@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; //So you can use SceneManager
+
 
 public class platformer : MonoBehaviour
 {
@@ -23,6 +25,7 @@ public class platformer : MonoBehaviour
     public GameObject bullet;
 
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,9 +43,9 @@ public class platformer : MonoBehaviour
     void Fire()
     {
         //this is basic movement, left and right.  to change what inputs you are using go into project settings.
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, transform.position + new Vector3(.8f,0,0), transform.rotation);
+            Instantiate(bullet, transform.position + new Vector3(1f,0,0), transform.rotation);
         }
     }
 
@@ -55,7 +58,7 @@ public class platformer : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
@@ -87,6 +90,14 @@ public class platformer : MonoBehaviour
                 lastTimeGrounded = Time.time;
             }
             isGrounded = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "OutOfBounds")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
     }
 }
