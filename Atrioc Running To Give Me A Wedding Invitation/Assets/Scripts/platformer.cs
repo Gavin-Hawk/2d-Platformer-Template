@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class platformer : MonoBehaviour
 {
+    //these are different variables to change for different functions
     Rigidbody2D rb;
+    //basic jumping
     public float speed;
     public float jumpForce;
     bool isGrounded = false;
-    public Transform isGroundedChecker;
-    public float checkGroundRadius;
-    public LayerMask groundLayer;
+    //this stuff is more advanced for jump feel
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float rememberGroundedFor;
     float lastTimeGrounded;
+    //these are all for making sure when you can jump.
+    public Transform isGroundedChecker;
+    public float checkGroundRadius;
+    public LayerMask groundLayer;
+    //keeping track of the bullet
+    public GameObject bullet;
 
 
     void Start()
@@ -24,11 +30,22 @@ public class platformer : MonoBehaviour
 
     void Update()
     {
+        //depending on the platformer you are making, you can take out and edit individual functions.
         Jump();
         BetterJump();
         Move();
         CheckIfGrounded();
+        Fire();
     }
+    void Fire()
+    {
+        //this is basic movement, left and right.  to change what inputs you are using go into project settings.
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Instantiate(bullet, transform.position + new Vector3(.8f,0,0), transform.rotation);
+        }
+    }
+
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
