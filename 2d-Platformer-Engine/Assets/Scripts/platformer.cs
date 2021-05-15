@@ -45,7 +45,7 @@ public class platformer : MonoBehaviour
         //this is basic movement, left and right.  to change what inputs you are using go into project settings.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, transform.position + new Vector3(1f,0,0), transform.rotation);
+            Instantiate(bullet, transform.position + new Vector3(1.5f,0,0), transform.rotation);
         }
     }
 
@@ -95,7 +95,12 @@ public class platformer : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        //change these to input a lives system
         if (col.gameObject.tag == "OutOfBounds")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
+        if (col.gameObject.tag == "enemy")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
