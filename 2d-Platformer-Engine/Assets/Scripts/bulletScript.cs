@@ -9,9 +9,13 @@ public class bulletScript : MonoBehaviour
     private float speed;
     //this is used to make sure that the bullet doesn't go on forever
     private Vector3 startingPosition;
+
+    private float direction;
+
     // Start is called before the first frame update
     void Start()
     {
+        direction = 1;
         speed = 15f;
         startingPosition = transform.position;
     }
@@ -22,7 +26,7 @@ public class bulletScript : MonoBehaviour
 
         //this object moves to the right at a speed set by a private variable that can be edited
         //also it gets destroyed when it hits something or goes too far away
-        transform.position = transform.position + new Vector3(speed,0,0)*Time.deltaTime;
+        transform.position = transform.position + new Vector3(speed,0,0)*Time.deltaTime * direction;
     }
 
     //a collision detection to see if the bullet hits another object
@@ -32,6 +36,18 @@ public class bulletScript : MonoBehaviour
         if (col.gameObject.tag == "OutOfBounds")
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void Direction(bool left)
+    {
+        if (left)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
         }
     }
 }

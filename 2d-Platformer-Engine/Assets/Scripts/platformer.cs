@@ -23,7 +23,7 @@ public class platformer : MonoBehaviour
     public LayerMask groundLayer;
     //keeping track of the bullet
     public GameObject bullet;
-
+    private bool left;
 
 
     void Start()
@@ -45,7 +45,8 @@ public class platformer : MonoBehaviour
         //this is basic movement, left and right.  to change what inputs you are using go into project settings.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, transform.position + new Vector3(1.5f,0,0), transform.rotation);
+            GameObject bullet2 = Instantiate(bullet, transform.position + new Vector3(1.5f,0,0), transform.rotation);
+            bullet2.SendMessage("Direction", left);
         }
     }
 
@@ -53,6 +54,14 @@ public class platformer : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float moveBy = x * speed;
+        if (moveBy >= 0)
+        {
+            left = false;
+        }
+        else
+        {
+            left = true;
+        }
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
     }
 

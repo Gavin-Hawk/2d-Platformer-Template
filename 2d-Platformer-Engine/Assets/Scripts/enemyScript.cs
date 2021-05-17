@@ -21,7 +21,7 @@ public class enemyScript : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, movementPoints[count].transform.position, 1f*Time.deltaTime);
         if (Vector3.Distance(transform.position, movementPoints[count].transform.position) < 1f)
         { 
-            if (count >= movementPoints.Length)
+            if (count >= movementPoints.Length - 1)
             {
                 count = 0;
             }
@@ -31,5 +31,14 @@ public class enemyScript : MonoBehaviour
             }
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //change these to input a lives system
+        if (col.gameObject.tag == "Bullet")
+        {
+            Destroy(gameObject);
+        }
     }
 }
