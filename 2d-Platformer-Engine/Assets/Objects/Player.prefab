@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2577053130717379687}
   - component: {fileID: 2577053130717379684}
   m_Layer: 0
-  m_Name: Atrioc
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2577053130717379685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.09, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children:
   - {fileID: 2577053131409702417}
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 40f0de0ab427b6342a974392819f94f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77cc55e1eb8933749b736049a4251991, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5.79
-  jumpForce: 7
+  jumpForce: 9.17
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   rememberGroundedFor: 0.1
@@ -129,8 +129,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   bullet: {fileID: 2153538832300941034, guid: 9b9658f399ba2d749b3b17e4f8437ae8, type: 3}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
 --- !u!61 &2577053130717379684
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,18 +142,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04342726}
+  m_Offset: {x: -0.009860091, y: -0.073073715}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.24}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1.81, y: 1.95}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15389694, y: 0.114427984}
+  m_Size: {x: 0.22078286, y: 0.1737209}
   m_EdgeRadius: 0
 --- !u!1 &2577053131409702430
 GameObject:
@@ -181,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2577053131409702430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1012, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1602, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2577053130717379707}

@@ -24,6 +24,7 @@ public class platformer : MonoBehaviour
     //keeping track of the bullet
     public GameObject bullet;
     private bool left;
+    public bool shootingTrue;
 
 
     void Start()
@@ -42,16 +43,19 @@ public class platformer : MonoBehaviour
     }
     void Fire()
     {
-        //this is basic movement, left and right.  to change what inputs you are using go into project settings.
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetButtonDown("Fire1"))
+        if (shootingTrue)
         {
-            GameObject bullet2 = Instantiate(bullet, transform.position + new Vector3(1.5f,0,0), transform.rotation);
-            bullet2.SendMessage("Direction", left);
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetButtonDown("Fire1"))
+            {
+                GameObject bullet2 = Instantiate(bullet, transform.position + new Vector3(1.5f, 0, 0), transform.rotation);
+                bullet2.SendMessage("Direction", left);
+            }
         }
     }
 
     void Move()
     {
+        //this is basic movement, left and right.  to change what inputs you are using go into project settings.
         float x = Input.GetAxisRaw("Horizontal");
         float moveBy = x * speed;
         if (moveBy >= 0)
@@ -62,11 +66,14 @@ public class platformer : MonoBehaviour
         {
             left = true;
         }
+        //in this project i'm using rigid body to move but there are other forms of movement you could use
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
     }
 
     void Jump()
     {
+        //if the jump button is pressed the charecter's velocity is moved upwards in the y direction
+                //also it checks with isGrounded to make sure there is ground benieth it
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump")) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -87,6 +94,7 @@ public class platformer : MonoBehaviour
 
     void CheckIfGrounded()
     {
+        //makes sure that the "ground" is beneath it
         Collider2D colliders = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
         if (colliders != null)
         {
