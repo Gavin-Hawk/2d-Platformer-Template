@@ -109,7 +109,7 @@ public class platformer : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
-        if (col.gameObject.tag == "enemy")
+        if (col.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
